@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รายละเอียดเกม - ODINZGAMES</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo"><i class="fas fa-gamepad"></i> ODINZ<span>GAMES</span></a>
+        <div class="search-container">
+            <input type="text" id="search-input" class="search-input" placeholder="ค้นหาเกม...">
+            <button class="search-btn"><i class="fas fa-search"></i></button>
+        </div>
+        <div class="nav-menu">
+            <a href="index.html" class="nav-link">หน้าหลัก</a>
+            <a href="contact.html" class="nav-link">ติดต่อเรา</a>
+            <div class="cart-btn" onclick="toggleCart()">
+                <i class="fas fa-shopping-cart" style="color: white;"></i>
+                <span id="cart-count" class="cart-count">0</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <a href="index.html" style="color: var(--text-sub); display:inline-block; margin-bottom:15px;">
+            <i class="fas fa-arrow-left"></i> กลับหน้าร้านค้า
+        </a>
+
+        <div class="detail-layout">
+            
+            <div class="left-col">
+                <div class="main-gallery">
+                    <img id="main-img" src="" alt="Game Main">
+                    <div id="sub-gallery" class="sub-gallery">
+                        </div>
+                </div>
+
+                <div class="sys-req-box">
+                    <h3><i class="fas fa-desktop"></i> System Requirements</h3>
+                    <div id="sys-req" style="color:#ccc; font-size:0.9rem; line-height:1.6;">กำลังโหลด...</div>
+                </div>
+            </div>
+
+            <div class="right-col">
+                <div class="game-info-panel">
+                    <h1 id="detail-title" class="detail-title">Loading...</h1>
+                    <div id="detail-price" class="detail-price">฿---</div>
+                    
+                    <div id="detail-actions" class="action-buttons" style="flex-direction:column; gap:15px;">
+                        </div>
+                    
+                    <div class="feature-list" id="feature-list" style="margin-top:30px;"></div>
+
+                    <div style="font-size:0.9rem; color:#9ca3af; margin-bottom:10px;">เกี่ยวกับเกมนี้:</div>
+                    <div id="desc-box" class="description-box"></div>
+                    <button id="read-more-btn" class="read-more-btn" onclick="toggleReadMore()">อ่านเพิ่มเติม ></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="cart-modal" class="cart-modal">
+        <div class="cart-content">
+            <span class="close-cart" onclick="toggleCart()">&times;</span>
+            <h2>ตะกร้าสินค้า</h2>
+            <div id="cart-items" style="max-height:300px; overflow-y:auto;"></div>
+            <div style="margin-top:20px; font-weight:bold; font-size:1.2rem;">ยอดรวม: <span id="cart-total" style="color:var(--primary-blue);">฿0</span></div>
+            <button style="width:100%; margin-top:15px; background:var(--primary-blue); border:none; padding:10px; color:white; font-weight:bold; border-radius:5px;" onclick="openCheckout()">ชำระเงิน</button>
+        </div>
+    </div>
+
+    <div id="checkout-modal" class="checkout-modal">
+        <div class="checkout-content">
+            <span class="close-cart" onclick="closeCheckout()">&times;</span>
+            <h2 style="color:var(--primary-blue); margin-bottom:20px;">ชำระเงินปลอดภัย</h2>
+            <form id="checkout-form" onsubmit="processPayment(event)">
+                <div class="input-group"><label>ชื่อผู้ถือบัตร</label><input type="text" required></div>
+                <div class="input-group"><label>หมายเลขบัตร</label><input type="text" required></div>
+                <button type="submit" class="btn-buy" style="width:100%; padding:12px; margin-top:10px;">ยืนยันการชำระเงิน</button>
+            </form>
+            <div id="checkout-loading" style="display:none;"><div class="spinner"></div><p>กำลังดำเนินการ...</p></div>
+            <div id="checkout-success" style="display:none;">
+                <div class="success-checkmark"><i class="fas fa-check-circle"></i></div>
+                <h3>ขอบคุณที่อุดหนุน!</h3>
+                <button class="btn-cart" onclick="closeCheckout()" style="margin-top:20px;">ปิดหน้าต่าง</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

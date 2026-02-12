@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ติดต่อเรา - ODINZGAMES</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo"><i class="fas fa-gamepad"></i> ODINZ<span>GAMES</span></a>
+        <div class="search-container">
+            <input type="text" id="search-input" class="search-input" placeholder="ค้นหาเกม...">
+            <button class="search-btn"><i class="fas fa-search"></i></button>
+        </div>
+        <div class="nav-menu">
+            <a href="index.html" class="nav-link">หน้าหลัก</a>
+            <a href="contact.html" class="nav-link" style="color: var(--primary-blue);">ติดต่อเรา</a>
+            <div class="cart-btn" onclick="toggleCart()">
+                <i class="fas fa-shopping-cart" style="color: white;"></i>
+                <span id="cart-count" class="cart-count">0</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="contact-container">
+        <div class="contact-card">
+            <div class="contact-header">
+                <h1>ติดต่อทีมงาน</h1>
+                <p>หากมีข้อสงสัย แจ้งปัญหา หรือสนใจร่วมงานกับเรา<br>สามารถติดต่อได้ผ่านช่องทางด้านล่าง</p>
+            </div>
+            
+            <div class="social-grid">
+                <a href="https://www.facebook.com/thanakorn.lanrod/" target="_blank" class="social-btn fb">
+                    <i class="fab fa-facebook-f"></i> ติดต่อผ่าน Facebook
+                </a>
+                
+                <a href="https://www.instagram.com/odinz_ed/" target="_blank" class="social-btn ig">
+                    <i class="fab fa-instagram"></i> ติดตามบน Instagram
+                </a>
+                
+                <a href="mailto:odinz@gmail.com" class="social-btn email">
+                    <i class="fas fa-envelope"></i> ส่งอีเมลหาเรา
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="cart-modal" class="cart-modal">
+        <div class="cart-content">
+            <span class="close-cart" onclick="toggleCart()">&times;</span>
+            <h2>ตะกร้าสินค้า</h2>
+            <div id="cart-items" style="max-height:300px; overflow-y:auto;"></div>
+            <div style="margin-top:20px; font-weight:bold; font-size:1.2rem;">ยอดรวม: <span id="cart-total" style="color:var(--primary-blue);">฿0</span></div>
+            <button style="width:100%; margin-top:15px; background:var(--primary-blue); border:none; padding:10px; color:white; font-weight:bold; border-radius:5px;">ชำระเงิน</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
