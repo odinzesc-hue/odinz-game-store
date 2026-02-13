@@ -20,18 +20,17 @@ function getPrice(gameName, rating) {
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 function addToCart(id, title, price, image) {
     if (cart.find(item => item.id === id)) { 
-        // ถ้ามีอยู่แล้วให้แจ้งเตือนแบบไม่ต้อง Alert
         return false; 
     }
     cart.push({ id, title, price, image });
     localStorage.setItem('cart', JSON.stringify(cart));
     updateCartUI();
-    return true; // สำเร็จ
+    return true; 
 }
 
 function buyNow(id, title, price, image) {
-    addToCart(id, title, price, image); // ใส่ตะกร้าก่อน
-    openCheckout(); // เปิดหน้าจ่ายเงินเลย
+    addToCart(id, title, price, image); 
+    openCheckout(); 
 }
 
 function removeFromCart(id) {
@@ -48,23 +47,22 @@ function toggleWishlist(id) {
     if (wishlist.includes(id)) {
         wishlist = wishlist.filter(itemId => itemId !== id);
         btn.classList.remove('active');
-        btn.innerHTML = '<i class="far fa-heart"></i>'; // Heart Outline
+        btn.innerHTML = '<i class="far fa-heart"></i>'; 
     } else {
         wishlist.push(id);
         btn.classList.add('active');
-        btn.innerHTML = '<i class="fas fa-heart"></i>'; // Solid Heart
+        btn.innerHTML = '<i class="fas fa-heart"></i>'; 
     }
     localStorage.setItem('wishlist', JSON.stringify(wishlist));
 }
 
 // 4. Checkout System
 function openCheckout() {
-    toggleCart(); // ปิดตะกร้าก่อน (ถ้าเปิดอยู่)
+    toggleCart(); 
     document.getElementById('checkout-modal').style.display = 'flex';
 }
 function closeCheckout() {
     document.getElementById('checkout-modal').style.display = 'none';
-    // Reset Form
     document.getElementById('checkout-form').style.display = 'block';
     document.getElementById('checkout-loading').style.display = 'none';
     document.getElementById('checkout-success').style.display = 'none';
@@ -74,12 +72,9 @@ function processPayment(e) {
     document.getElementById('checkout-form').style.display = 'none';
     document.getElementById('checkout-loading').style.display = 'block';
 
-    // จำลองการโหลด 2 วินาที
     setTimeout(() => {
         document.getElementById('checkout-loading').style.display = 'none';
         document.getElementById('checkout-success').style.display = 'block';
-        
-        // เคลียร์ตะกร้า
         cart = [];
         localStorage.setItem('cart', JSON.stringify(cart));
         updateCartUI();
@@ -92,7 +87,6 @@ let currentSearch = '';
 let currentGenre = '';
 
 async function initHome() {
-    // Generate Genre Buttons
     const genres = [
         {name: 'Action', slug: 'action'}, {name: 'RPG', slug: 'role-playing-games-rpg'},
         {name: 'Shooter', slug: 'shooter'}, {name: 'Adventure', slug: 'adventure'},
@@ -125,20 +119,17 @@ async function initHome() {
 }
 
 function filterGenre(slug, btn) {
-    // UI Active State
     document.querySelectorAll('.genre-pill').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
 
-    // Logic
     currentGenre = slug;
-    currentSearch = ''; // เคลียร์ค้นหา
+    currentSearch = ''; 
     currentPage = 1;
     document.getElementById('search-input').value = '';
     document.getElementById('section-title').innerText = `หมวดหมู่: ${btn.innerText}`;
     loadGames(1, '', slug);
 }
 
-// Skeleton Loader
 function showSkeleton(count) {
     const grid = document.getElementById('game-grid');
     grid.innerHTML = '';
@@ -183,7 +174,7 @@ async function loadGames(page, search='', genre='') {
     const grid = document.getElementById('game-grid');
     const loadMoreBtn = document.getElementById('load-more-btn');
     
-    if(page === 1) showSkeleton(8); // โชว์ Skeleton ก่อนโหลด
+    if(page === 1) showSkeleton(8); 
     loadMoreBtn.style.display = 'none';
 
     let url = `https://api.rawg.io/api/games?key=${apiKey}&page_size=20&page=${page}`;
@@ -195,7 +186,7 @@ async function loadGames(page, search='', genre='') {
         const res = await fetch(url);
         const data = await res.json();
         
-        if(page === 1) grid.innerHTML = ''; // เคลียร์ Skeleton
+        if(page === 1) grid.innerHTML = ''; 
         
         if(!data.results || data.results.length === 0) {
             grid.innerHTML = '<p style="color:#888; grid-column:1/-1; text-align:center; padding:20px;">ไม่พบเกม</p>';
@@ -236,7 +227,6 @@ async function loadGames(page, search='', genre='') {
     } catch(err) { console.error(err); }
 }
 
-// Detail Page Logic
 async function initDetail() {
     const id = new URLSearchParams(window.location.search).get('id');
     if(!id) return;
@@ -266,7 +256,6 @@ async function initDetail() {
         });
         feat.innerHTML += `<div class="feature-item"><i class="fas fa-user"></i> Single Player</div>`;
 
-        // ปุ่ม Add/Buy หน้า Detail
         const btnContainer = document.getElementById('detail-actions');
         btnContainer.innerHTML = `
              <button class="btn-cart" style="padding:15px; font-size:1.1rem;" onclick="addToCart(${game.id}, '${game.name.replace(/'/g, "\\'")}', ${price}, '${game.background_image}'); this.innerHTML='<i class=\\'fas fa-check\\'></i> เพิ่มแล้ว';">

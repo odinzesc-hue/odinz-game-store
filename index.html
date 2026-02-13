@@ -10,7 +10,10 @@
 <body>
 
     <nav class="navbar">
-        <a href="index.html" class="logo"><i class="fas fa-gamepad"></i> ODINZ<span>GAMES</span></a>
+        <a href="index.html" class="logo">
+            <img src="https://api.iconify.design/game-icons/viking-helmet.svg?color=%232563eb" alt="Viking Helmet Logo" class="logo-helmet">
+            ODINZ<span>GAMES</span>
+        </a>
         <div class="search-container">
             <input type="text" id="search-input" class="search-input" placeholder="ค้นหาเกม... (เช่น Resident Evil)">
             <button class="search-btn"><i class="fas fa-search"></i></button>
@@ -27,7 +30,8 @@
 
     <div class="container" style="padding-top: 20px;">
         <div id="hero-slider" class="hero-slider-container">
-            </div>
+            <div style="color:white; text-align:center; padding-top:150px;">กำลังโหลด...</div>
+        </div>
 
         <h2 id="section-title" style="border-left: 5px solid var(--primary-blue); padding-left: 15px;">🔥 เกมแนะนำ / ยอดนิยม</h2>
         
@@ -56,7 +60,6 @@
         <div class="checkout-content">
             <span class="close-cart" onclick="closeCheckout()">&times;</span>
             <h2 style="color:var(--primary-blue); margin-bottom:20px;">ชำระเงินปลอดภัย</h2>
-            
             <form id="checkout-form" onsubmit="processPayment(event)">
                 <div class="input-group">
                     <label>ชื่อผู้ถือบัตร</label>
@@ -78,12 +81,10 @@
                 </div>
                 <button type="submit" class="btn-buy" style="width:100%; padding:12px; font-size:1.1rem; margin-top:10px;">ยืนยันการชำระเงิน</button>
             </form>
-
             <div id="checkout-loading" style="display:none;">
                 <div class="spinner"></div>
                 <p>กำลังดำเนินการ...</p>
             </div>
-
             <div id="checkout-success" style="display:none;">
                 <div class="success-checkmark"><i class="fas fa-check-circle"></i></div>
                 <h3>ขอบคุณที่อุดหนุน!</h3>
